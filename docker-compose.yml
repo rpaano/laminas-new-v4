@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  laminas:
+    container_name: laminas-new-v4
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+    - "8084:80"
+    volumes:
+    - .:/var/www
+    external_links: 
+      - mysql:database
+
+  mysql:
+    image: mysql:5.7
+    container_name: laminas-new-v4-mysql
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=Qwer1234
+      - MYSQL_DATABASE=laminas_new_v4
+      - MYSQL_USER=rpaano
+      - MYSQL_PASSWORD=Qwer1234
+    ports:
+      - "8004:3306"
+
