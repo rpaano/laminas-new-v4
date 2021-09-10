@@ -81,3 +81,6 @@ RUN apt-get install --yes libicu-dev \
 
 
 WORKDIR /var/www
+WORKDIR /data
+RUN chown -R www-data:www-data $(pwd)
+WORKDIR /..
